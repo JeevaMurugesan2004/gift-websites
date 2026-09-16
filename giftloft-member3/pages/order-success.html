@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — GiftLoft</title>
+<link rel="stylesheet" href="../css/auth-cart.css">
+</head>
+<body class="gs-body">
+
+  <!-- ============ TEMP NAV (Member 1 owns the real navbar) ============ -->
+  <header class="gs-nav">
+    <div class="gs-nav__inner">
+      <a href="../index.html" class="gs-nav__brand">
+        <span class="gs-nav__brand-mark" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v9H4v-9M2 7h20v5H2V7zm10 0v14M12 7c-1.5-4-6-4-6-1s3 1 6 1zm0 0c1.5-4 6-4 6-1s-3 1-6 1z"/></svg>
+        </span>
+        GiftLoft
+      </a>
+      <nav class="gs-nav__links" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="products.html">Shop</a>
+        <span class="gs-nav__note">Member 1 &amp; 2 pages</span>
+      </nav>
+      <div class="gs-nav__actions">
+        <a href="cart.html" class="gs-cart-link" aria-label="View cart">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="gs-cart-badge" data-gs-cart-badge data-empty="true">0</span>
+        </a>
+        <div data-gs-nav-auth></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="gs-success-wrap">
+    <div class="gs-success-seal" aria-hidden="true">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h1 class="gs-success-title">Order placed successfully!</h1>
+    <p class="gs-success-sub" data-gs-success-sub>Thank you — your gift is being wrapped and prepared for delivery.</p>
+
+    <div class="gs-receipt" data-gs-receipt>
+      <!-- Filled in by script -->
+    </div>
+
+    <div class="gs-success-actions">
+      <a href="products.html" class="gs-btn gs-btn--primary">Continue shopping</a>
+      <a href="orders.html" class="gs-btn gs-btn--ghost" data-gs-view-orders>View orders</a>
+    </div>
+  </main>
+
+  <footer class="gs-footer">GiftLoft — placeholder footer, replaced by Member 1's design on merge.</footer>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+  <script>
+    (function () {
+      function escapeHTML(str) {
+        var div = document.createElement("div");
+        div.textContent = str == null ? "" : String(str);
+        return div.innerHTML;
+      }
+
+      var order = null;
+      try {
+        order = JSON.parse(localStorage.getItem("lastOrder") || "null");
+      } catch (e) {
+        order = null;
+      }
+
+      var receiptEl = document.querySelector("[data-gs-receipt]");
+      var subEl = document.querySelector("[data-gs-success-sub]");
+
+      if (!order) {
+        // No order in this browser session — guide the user back rather than
+        // showing an empty / broken receipt.
+        subEl.textContent = "We couldn't find a recent order in this browser.";
+        receiptEl.innerHTML =
+          '<p style="text-align:center; color:var(--gs-ink-soft); margin:0;">' +
+          "Place an order from your cart to see the confirmation here." +
+          "</p>";
+        return;
+      }
+
+      var placedDate = new Date(order.placedAt);
+      var formattedDate = placedDate.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) +
+        " · " + placedDate.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+
+      var paymentSummary = order.paymentLabel;
+      if (order.paymentMethod === "card" && order.paymentDetails && order.paymentDetails.cardLast4) {
+        paymentSummary += " (•••• " + order.paymentDetails.cardLast4 + ")";
+      } else if (order.paymentMethod === "upi" && order.paymentDetails && order.paymentDetails.upiId) {
+        paymentSummary += " (" + escapeHTML(order.paymentDetails.upiId) + ")";
+      }
+
+      var addressLine = [order.address.line, order.address.city, order.address.state, order.address.pincode]
+        .filter(Boolean)
+        .map(escapeHTML)
+        .join(", ");
+
+      var productsHTML = order.products
+        .map(function (item) {
+          return (
+            '<div class="gs-receipt__product">' +
+              "<span>" + escapeHTML(item.name) + " × " + item.quantity + "</span>" +
+              "<span>" + window.GSCart.formatMoney(item.price * item.quantity) + "</span>" +
+            "</div>"
+          );
+        })
+        .join("");
+
+      receiptEl.innerHTML =
+        '<div class="gs-receipt__row"><span>Order ID</span><span>' + escapeHTML(order.orderId) + "</span></div>" +
+        '<div class="gs-receipt__row"><span>Placed on</span><span>' + formattedDate + "</span></div>" +
+        '<div class="gs-receipt__row"><span>Customer</span><span>' + escapeHTML(order.customer.fullName) + "</span></div>" +
+        '<div class="gs-receipt__row"><span>Payment method</span><span>' + escapeHTML(paymentSummary) + "</span></div>" +
+        '<div class="gs-receipt__row"><span>Delivery address</span><span>' + addressLine + "</span></div>" +
+        '<div class="gs-receipt__products">' + productsHTML + "</div>" +
+        '<div class="gs-receipt__total"><span>Grand total</span><span>' + window.GSCart.formatMoney(order.grandTotal) + "</span></div>";
+
+      subEl.textContent = "Order " + order.orderId + " is confirmed. A copy of this receipt is saved to your orders.";
+
+      var viewOrdersBtn = document.querySelector("[data-gs-view-orders]");
+      viewOrdersBtn.addEventListener("click", function (e) {
+        // orders.html isn't part of Member 3's scope — guard against a dead link
+        // until that page exists, so the demo never shows a broken navigation.
+        e.preventDefault();
+        alert("Your order history is saved in localStorage under \"orders\" — hook this button up once the Orders page is built.");
+      });
+    })();
+  </script>
+</body>
+</html>

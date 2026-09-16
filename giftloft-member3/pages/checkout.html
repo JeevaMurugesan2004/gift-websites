@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — GiftLoft</title>
+<link rel="stylesheet" href="../css/auth-cart.css">
+</head>
+<body class="gs-body">
+
+  <!-- ============ TEMP NAV (Member 1 owns the real navbar) ============ -->
+  <header class="gs-nav">
+    <div class="gs-nav__inner">
+      <a href="../index.html" class="gs-nav__brand">
+        <span class="gs-nav__brand-mark" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v9H4v-9M2 7h20v5H2V7zm10 0v14M12 7c-1.5-4-6-4-6-1s3 1 6 1zm0 0c1.5-4 6-4 6-1s-3 1-6 1z"/></svg>
+        </span>
+        GiftLoft
+      </a>
+      <nav class="gs-nav__links" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="products.html">Shop</a>
+        <span class="gs-nav__note">Member 1 &amp; 2 pages</span>
+      </nav>
+      <div class="gs-nav__actions">
+        <a href="cart.html" class="gs-cart-link" aria-label="View cart">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="gs-cart-badge" data-gs-cart-badge data-empty="true">0</span>
+        </a>
+        <div data-gs-nav-auth></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="gs-page">
+    <div class="gs-page-head">
+      <a href="cart.html" class="gs-eyebrow-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to cart
+      </a>
+      <h1 class="gs-page-title">Checkout</h1>
+      <p class="gs-page-sub">Almost there — confirm the details and we'll get it wrapped.</p>
+    </div>
+
+    <form data-gs-checkout-form novalidate>
+      <div class="gs-checkout-layout">
+        <div>
+          <!-- A. Customer Information -->
+          <section class="gs-section">
+            <div class="gs-section__head">
+              <span class="gs-section__num">1</span>
+              <h2 class="gs-section__title">Customer information</h2>
+            </div>
+            <div class="gs-field">
+              <label class="gs-field__label" for="fullName">Full name</label>
+              <input class="gs-input" type="text" id="fullName" name="fullName" placeholder="Ananya Sharma" required>
+              <p class="gs-error-text">Enter your full name.</p>
+            </div>
+            <div class="gs-field__row gs-field__row--2">
+              <div class="gs-field">
+                <label class="gs-field__label" for="email">Email</label>
+                <input class="gs-input" type="email" id="email" name="email" placeholder="you@example.com" required>
+                <p class="gs-error-text">Enter a valid email address.</p>
+              </div>
+              <div class="gs-field">
+                <label class="gs-field__label" for="phone">Phone number</label>
+                <input class="gs-input" type="tel" id="phone" name="phone" placeholder="9876543210" required>
+                <p class="gs-error-text">Enter a valid 10-digit phone number.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- B. Delivery Address -->
+          <section class="gs-section">
+            <div class="gs-section__head">
+              <span class="gs-section__num">2</span>
+              <h2 class="gs-section__title">Delivery address</h2>
+            </div>
+            <div class="gs-field">
+              <label class="gs-field__label" for="address">Address</label>
+              <input class="gs-input" type="text" id="address" name="address" placeholder="Flat / House no., street, locality" required>
+              <p class="gs-error-text">Enter your delivery address.</p>
+            </div>
+            <div class="gs-field__row gs-field__row--3">
+              <div class="gs-field">
+                <label class="gs-field__label" for="city">City</label>
+                <input class="gs-input" type="text" id="city" name="city" placeholder="Coimbatore" required>
+                <p class="gs-error-text">Enter your city.</p>
+              </div>
+              <div class="gs-field">
+                <label class="gs-field__label" for="state">State</label>
+                <input class="gs-input" type="text" id="state" name="state" placeholder="Tamil Nadu" required>
+                <p class="gs-error-text">Enter your state.</p>
+              </div>
+              <div class="gs-field">
+                <label class="gs-field__label" for="pincode">Pincode</label>
+                <input class="gs-input" type="text" id="pincode" name="pincode" placeholder="641001" inputmode="numeric" required>
+                <p class="gs-error-text">Enter a valid 6-digit pincode.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- C. Payment Method -->
+          <section class="gs-section">
+            <div class="gs-section__head">
+              <span class="gs-section__num">3</span>
+              <h2 class="gs-section__title">Payment method</h2>
+            </div>
+
+            <div class="gs-pay-options">
+              <label class="gs-pay-option" data-gs-pay-option="upi">
+                <input type="radio" name="paymentMethod" value="upi" checked>
+                <span class="gs-pay-option__icon">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 2 8l10 6 10-6-10-6zM2 16l10 6 10-6M2 12l10 6 10-6"/></svg>
+                </span>
+                <span>
+                  <span class="gs-pay-option__label" style="display:block;">UPI</span>
+                  <span class="gs-pay-option__desc">Pay instantly via any UPI app</span>
+                </span>
+              </label>
+
+              <label class="gs-pay-option" data-gs-pay-option="card">
+                <input type="radio" name="paymentMethod" value="card">
+                <span class="gs-pay-option__icon">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+                </span>
+                <span>
+                  <span class="gs-pay-option__label" style="display:block;">Credit / Debit card</span>
+                  <span class="gs-pay-option__desc">Visa, Mastercard, RuPay accepted</span>
+                </span>
+              </label>
+
+              <label class="gs-pay-option" data-gs-pay-option="cod">
+                <input type="radio" name="paymentMethod" value="cod">
+                <span class="gs-pay-option__icon">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </span>
+                <span>
+                  <span class="gs-pay-option__label" style="display:block;">Cash on delivery</span>
+                  <span class="gs-pay-option__desc">Pay when your gift arrives</span>
+                </span>
+              </label>
+            </div>
+
+            <!-- UPI detail -->
+            <div class="gs-pay-detail" data-gs-pay-detail="upi">
+              <div class="gs-field">
+                <label class="gs-field__label" for="upiId">UPI ID</label>
+                <input class="gs-input" type="text" id="upiId" name="upiId" placeholder="yourname@bank">
+                <p class="gs-error-text">Enter a valid UPI ID (e.g. name@bank).</p>
+              </div>
+            </div>
+
+            <!-- Card detail -->
+            <div class="gs-pay-detail" data-gs-pay-detail="card">
+              <div class="gs-field">
+                <label class="gs-field__label" for="cardNumber">Card number</label>
+                <input class="gs-input" type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" inputmode="numeric" maxlength="19">
+                <p class="gs-error-text">Enter a valid card number.</p>
+              </div>
+              <div class="gs-field__row gs-field__row--2">
+                <div class="gs-field">
+                  <label class="gs-field__label" for="cardExpiry">Expiry date</label>
+                  <input class="gs-input" type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" maxlength="5">
+                  <p class="gs-error-text">Enter a valid, unexpired MM/YY date.</p>
+                </div>
+                <div class="gs-field">
+                  <label class="gs-field__label" for="cardCVV">CVV</label>
+                  <input class="gs-input" type="password" id="cardCVV" name="cardCVV" placeholder="123" inputmode="numeric" maxlength="4">
+                  <p class="gs-error-text">Enter a valid CVV.</p>
+                </div>
+              </div>
+              <div class="gs-field">
+                <label class="gs-field__label" for="cardHolder">Name on card</label>
+                <input class="gs-input" type="text" id="cardHolder" name="cardHolder" placeholder="Ananya Sharma">
+                <p class="gs-error-text">Enter the name on the card.</p>
+              </div>
+            </div>
+
+            <!-- COD detail (nothing to fill, just a note) -->
+            <div class="gs-pay-detail" data-gs-pay-detail="cod">
+              <p class="gs-page-sub" style="font-size:0.85rem;">Keep the exact amount handy for a smooth handover at your doorstep.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- Order summary (gift-tag) -->
+        <aside class="gs-tag">
+          <h2 class="gs-tag__title">Order summary</h2>
+          <p class="gs-tag__note">Double-check before you place the order</p>
+
+          <div data-gs-checkout-products style="margin-bottom:8px;"></div>
+
+          <hr class="gs-tag__divider">
+          <div class="gs-tag__row"><span>Items</span><span data-gs-summary-qty>0</span></div>
+          <div class="gs-tag__row"><span>Subtotal</span><span data-gs-summary-subtotal>₹0</span></div>
+          <div class="gs-tag__row"><span>Delivery</span><span data-gs-summary-delivery>Free</span></div>
+          <hr class="gs-tag__divider">
+          <div class="gs-tag__row gs-tag__row--total"><span>Total</span><span data-gs-summary-total>₹0</span></div>
+
+          <div class="gs-tag__actions">
+            <button type="submit" class="gs-btn gs-btn--primary gs-btn--full">Place order</button>
+          </div>
+        </aside>
+      </div>
+    </form>
+  </main>
+
+  <footer class="gs-footer">GiftLoft — placeholder footer, replaced by Member 1's design on merge.</footer>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/checkout.js"></script>
+  <script>
+    // Light UX touch: auto-format the card number with spaces as the user types
+    document.addEventListener("DOMContentLoaded", function () {
+      var cardInput = document.getElementById("cardNumber");
+      if (cardInput) {
+        cardInput.addEventListener("input", function () {
+          var digits = cardInput.value.replace(/\D/g, "").slice(0, 16);
+          cardInput.value = digits.replace(/(.{4})/g, "$1 ").trim();
+        });
+      }
+      var expiryInput = document.getElementById("cardExpiry");
+      if (expiryInput) {
+        expiryInput.addEventListener("input", function () {
+          var digits = expiryInput.value.replace(/\D/g, "").slice(0, 4);
+          if (digits.length > 2) digits = digits.slice(0, 2) + "/" + digits.slice(2);
+          expiryInput.value = digits;
+        });
+      }
+    });
+  </script>
+</body>
+</html>
