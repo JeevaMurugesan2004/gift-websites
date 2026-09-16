@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account — GiftLoft</title>
+<link rel="stylesheet" href="../css/auth-cart.css">
+</head>
+<body class="gs-body">
+
+  <!-- ============ TEMP NAV (Member 1 owns the real navbar) ============ -->
+  <header class="gs-nav">
+    <div class="gs-nav__inner">
+      <a href="../index.html" class="gs-nav__brand">
+        <span class="gs-nav__brand-mark" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v9H4v-9M2 7h20v5H2V7zm10 0v14M12 7c-1.5-4-6-4-6-1s3 1 6 1zm0 0c1.5-4 6-4 6-1s-3 1-6 1z"/></svg>
+        </span>
+        GiftLoft
+      </a>
+      <nav class="gs-nav__links" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="products.html">Shop</a>
+        <span class="gs-nav__note">Member 1 &amp; 2 pages</span>
+      </nav>
+      <div class="gs-nav__actions">
+        <a href="cart.html" class="gs-cart-link" aria-label="View cart">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="gs-cart-badge" data-gs-cart-badge data-empty="true">0</span>
+        </a>
+        <div data-gs-nav-auth></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ REGISTER ============ -->
+  <main class="gs-auth">
+    <section class="gs-auth__brand">
+      <div class="gs-auth__ribbon" aria-hidden="true"></div>
+      <div class="gs-auth__brand-top">
+        <span class="gs-auth__brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v9H4v-9M2 7h20v5H2V7zm10 0v14M12 7c-1.5-4-6-4-6-1s3 1 6 1zm0 0c1.5-4 6-4 6-1s-3 1-6 1z"/></svg>
+        </span>
+        GiftLoft
+      </div>
+      <p class="gs-auth__quote">Join GiftLoft and turn <span>good intentions</span> into gifts people actually remember.</p>
+      <div class="gs-auth__foot">
+        <span>Free wishlists</span>
+        <span>Gift reminders</span>
+        <span>Easy returns</span>
+      </div>
+    </section>
+
+    <section class="gs-auth__panel">
+      <div class="gs-auth__card">
+        <h1 class="gs-auth__heading">Create your account</h1>
+        <p class="gs-auth__sub">Already have one? <a href="login.html">Log in</a></p>
+
+        <div class="gs-form-banner gs-form-banner--error" data-gs-register-error role="alert"></div>
+
+        <form data-gs-register-form novalidate>
+          <div class="gs-field">
+            <label class="gs-field__label" for="fullName">Full name</label>
+            <input class="gs-input" type="text" id="fullName" name="fullName" placeholder="Ananya Sharma" autocomplete="name" required>
+            <p class="gs-error-text" data-error-for="fullName">Enter your full name.</p>
+          </div>
+
+          <div class="gs-field">
+            <label class="gs-field__label" for="regEmail">Email address</label>
+            <input class="gs-input" type="email" id="regEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+            <p class="gs-error-text" data-error-for="email">Enter a valid email address.</p>
+          </div>
+
+          <div class="gs-field">
+            <label class="gs-field__label" for="phone">Phone number</label>
+            <input class="gs-input" type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" required>
+            <p class="gs-error-text" data-error-for="phone">Enter a valid 10-digit phone number.</p>
+          </div>
+
+          <div class="gs-field">
+            <label class="gs-field__label" for="regPassword">Password</label>
+            <div class="gs-input-wrap">
+              <input class="gs-input gs-input--pass" type="password" id="regPassword" name="password" placeholder="At least 6 characters" autocomplete="new-password" required>
+              <button type="button" class="gs-pass-toggle" data-gs-toggle-pass="regPassword" aria-label="Show password">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="gs-pass-strength"><div class="gs-pass-strength__bar" data-gs-strength-bar></div></div>
+            <p class="gs-pass-hint">Use 6+ characters, and mix in a number for a stronger password.</p>
+            <p class="gs-error-text" data-error-for="password">Password must be at least 6 characters.</p>
+          </div>
+
+          <div class="gs-field">
+            <label class="gs-field__label" for="confirmPassword">Confirm password</label>
+            <div class="gs-input-wrap">
+              <input class="gs-input gs-input--pass" type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" required>
+              <button type="button" class="gs-pass-toggle" data-gs-toggle-pass="confirmPassword" aria-label="Show password">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <p class="gs-error-text" data-error-for="confirmPassword">Passwords do not match.</p>
+          </div>
+
+          <label class="gs-check">
+            <input type="checkbox" id="terms" name="terms" required>
+            I agree to the <a href="#" data-gs-terms>Terms &amp; Conditions</a> and Privacy Policy
+          </label>
+          <p class="gs-error-text" data-error-for="terms" style="margin-top:-16px; margin-bottom:16px;">Please accept the terms to continue.</p>
+
+          <button type="submit" class="gs-btn gs-btn--primary gs-btn--full">Create account</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="gs-footer">GiftLoft — placeholder footer, replaced by Member 1's design on merge.</footer>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+  <script>
+    (function () {
+      document.querySelectorAll("[data-gs-toggle-pass]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var input = document.getElementById(btn.getAttribute("data-gs-toggle-pass"));
+          var isText = input.type === "text";
+          input.type = isText ? "password" : "text";
+          btn.setAttribute("aria-label", isText ? "Show password" : "Hide password");
+        });
+      });
+
+      document.querySelector("[data-gs-terms]").addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("Terms & Conditions placeholder — link this to your real policy page.");
+      });
+
+      var pwInput = document.getElementById("regPassword");
+      var strengthBar = document.querySelector("[data-gs-strength-bar]");
+      pwInput.addEventListener("input", function () {
+        var v = pwInput.value;
+        var score = 0;
+        if (v.length >= 6) score++;
+        if (v.length >= 10) score++;
+        if (/[0-9]/.test(v) && /[a-zA-Z]/.test(v)) score++;
+        if (/[^a-zA-Z0-9]/.test(v)) score++;
+        var pct = [0, 25, 55, 80, 100][score];
+        var colors = ["#E4D9CD", "#AE4A3D", "#C79A44", "#8FA97F", "#4C7A5A"];
+        strengthBar.style.width = pct + "%";
+        strengthBar.style.background = colors[score];
+      });
+
+      function setError(name, invalid, message) {
+        var input = document.querySelector('[name="' + name + '"]');
+        var errEl = document.querySelector('[data-error-for="' + name + '"]');
+        if (input) input.setAttribute("data-invalid", invalid ? "true" : "false");
+        if (errEl) {
+          if (message) errEl.textContent = message;
+          errEl.setAttribute("data-show", invalid ? "true" : "false");
+        }
+      }
+
+      var form = document.querySelector("[data-gs-register-form]");
+      var banner = document.querySelector("[data-gs-register-error]");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        banner.setAttribute("data-show", "false");
+
+        var fullName = document.getElementById("fullName").value;
+        var email = document.getElementById("regEmail").value.trim();
+        var phone = document.getElementById("phone").value;
+        var password = document.getElementById("regPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var terms = document.getElementById("terms").checked;
+
+        var nameValid = fullName.trim().length >= 2;
+        var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var phoneValid = /^[0-9]{10}$/.test(phone.replace(/\D/g, ""));
+        var passValid = password.length >= 6;
+        var confirmValid = password === confirmPassword && confirmPassword.length > 0;
+
+        setError("fullName", !nameValid);
+        setError("email", !emailValid);
+        setError("phone", !phoneValid);
+        setError("password", !passValid);
+        setError("confirmPassword", !confirmValid);
+        setError("terms", !terms);
+
+        if (!nameValid || !emailValid || !phoneValid || !passValid || !confirmValid || !terms) {
+          banner.textContent = "Please fix the highlighted fields before continuing.";
+          banner.setAttribute("data-show", "true");
+          return;
+        }
+
+        var result = window.GSAuth.register({ fullName: fullName, email: email, phone: phone, password: password });
+        if (!result.ok) {
+          banner.textContent = result.error;
+          banner.setAttribute("data-show", "true");
+          setError("email", true);
+          return;
+        }
+
+        window.location.href = "login.html";
+      });
+
+      ["fullName", "regEmail", "phone", "regPassword", "confirmPassword"].forEach(function (id) {
+        document.getElementById(id).addEventListener("input", function () {
+          var name = id === "regEmail" ? "email" : id;
+          setError(name, false);
+          banner.setAttribute("data-show", "false");
+        });
+      });
+      document.getElementById("terms").addEventListener("change", function () {
+        setError("terms", false);
+      });
+    })();
+  </script>
+</body>
+</html>
