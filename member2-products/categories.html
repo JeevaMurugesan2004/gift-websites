@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Occasio 🎁 – Curated Occasion Gifts & Products</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas Confetti Overlay -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- Drifting Aurora Background Mesh -->
+  <div class="aurora-bg">
+    <div class="aurora-blob blob-1" id="blob1"></div>
+    <div class="aurora-blob blob-2" id="blob2"></div>
+    <div class="aurora-blob blob-3" id="blob3"></div>
+  </div>
+
+  <!-- Announcement Bar -->
+  <aside class="announcement-bar" aria-label="Portal Header">
+    <div class="container announcement-inner">
+      <div class="portal-badge">
+        <i class="fa-solid fa-code-branch"></i> Member 2 – Categories & Products
+      </div>
+      <div class="announcement-tagline">
+        ✨ Discover Handcrafted Celebration Gifts for Life's Most Cherished Moments
+      </div>
+      <div class="announcement-pill">
+        <span class="live-pulse"></span> Dark Blue & Light Blue Experience
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Glass Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link" id="brandLogo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-gift"></i>
+        </div>
+        <div class="brand-copy">
+          <span class="brand-title">Occasio<span class="brand-dot">.</span></span>
+          <span class="brand-sub">Celebration Catalog</span>
+        </div>
+      </a>
+
+      <!-- Search Input with live search -->
+      <div class="search-module" role="search">
+        <i class="fa-solid fa-magnifying-glass search-ico"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search by occasion, product name, tags (e.g. ring, hamper, rose)..." 
+          autocomplete="off"
+          aria-label="Search products"
+        >
+        <button id="clearSearchBtn" class="clear-search-btn" title="Clear Search" aria-label="Clear Search" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Navigation Actions -->
+      <div class="nav-controls">
+        <button class="nav-btn wishlist-btn" id="wishlistNavBtn" title="View Wishlist" aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge" id="wishlistCount">0</span>
+        </button>
+
+        <button class="nav-btn cart-toggle-btn" id="cartNavBtn" title="View Cart" aria-label="Cart">
+          <i class="fa-solid fa-bag-shopping" id="cartNavIcon"></i>
+          <span class="cart-btn-text">Cart</span>
+          <span class="badge cart-badge-anim" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Interactive Opening Gift Box & Confetti -->
+  <section class="hero-section" id="heroSection">
+    <div class="container hero-layout">
+      <!-- Left Hero Details -->
+      <div class="hero-text-col">
+        <div class="hero-badge">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Curated Gift Collections
+        </div>
+        <h1 class="hero-heading">
+          Make Every Moment <br>
+          <span class="gradient-blue-text">Unforgettable</span> 🎁
+        </h1>
+        <p class="hero-desc">
+          Browse bespoke collections crafted for <strong>Birthdays, Anniversaries, Weddings, Valentine’s Day, Puberty ceremonies</strong>, and life’s special milestones with instant filter and live cart.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#catalogSection" class="btn btn-primary hero-explore-btn">
+            <i class="fa-solid fa-sparkles"></i> Explore Products
+          </a>
+          <button class="btn btn-outline" id="reopenGiftBtn">
+            <i class="fa-solid fa-gift"></i> Pop Gift Box 🎉
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Interactive Gift Box Stage -->
+      <div class="hero-gift-col">
+        <div class="gift-box-wrapper" id="giftBoxContainer" title="Click to pop surprise gift box!">
+          <div class="gift-aura"></div>
+          <!-- 3D Gift Box -->
+          <div class="gift-box" id="interactiveGiftBox">
+            <div class="gift-lid" id="giftLid">
+              <div class="gift-ribbon-bow"></div>
+              <div class="gift-ribbon-h"></div>
+            </div>
+            <div class="gift-body">
+              <div class="gift-ribbon-v"></div>
+              <div class="gift-sparkles-burst" id="giftBurst">
+                <span>✨</span><span>🎉</span><span>❤️</span><span>💍</span><span>🎂</span>
+              </div>
+            </div>
+          </div>
+          <div class="gift-tip">
+            <i class="fa-solid fa-hand-pointer"></i> <span>Click the gift to burst confetti!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Occasion Categories Showcase Section -->
+  <section class="occasions-section" id="occasionsSection">
+    <div class="container">
+      <div class="section-header">
+        <div class="header-left">
+          <span class="section-badge">Occasion Categories</span>
+          <h2 class="section-title">Shop by Celebration</h2>
+        </div>
+        <p class="section-subtitle">Click any occasion card below to instantly filter the curated gifts catalog</p>
+      </div>
+
+      <!-- 6 Occasion Category Cards + All -->
+      <div class="occasions-cards-grid" id="occasionCardsContainer">
+        <!-- 1. Birthday -->
+        <div class="occasion-card" data-category="birthday" tabindex="0" role="button" aria-label="Birthday Category">
+          <div class="card-glow"></div>
+          <div class="card-icon-circle">
+            <span class="occ-emoji">🎂</span>
+          </div>
+          <h3 class="occ-title">Birthday</h3>
+          <p class="occ-desc">Hampers, Cakes & Surprises</p>
+          <span class="occ-pill" id="badge-count-birthday">4 items</span>
+        </div>
+
+        <!-- 2. Anniversary -->
+        <div class="occasion-card" data-category="anniversary" tabindex="0" role="button" aria-label="Anniversary Category">
+          <div class="card-glow"></div>
+          <div class="card-icon-circle">
+            <span class="occ-emoji">💐</span>
+          </div>
+          <h3 class="occ-title">Anniversary</h3>
+          <p class="occ-desc">Eternal Roses & Timepieces</p>
+          <span class="occ-pill" id="badge-count-anniversary">3 items</span>
+        </div>
+
+        <!-- 3. Valentine's Day -->
+        <div class="occasion-card" data-category="valentines" tabindex="0" role="button" aria-label="Valentine's Day Category">
+          <div class="card-glow"></div>
+          <div class="card-icon-circle">
+            <span class="occ-emoji">❤️</span>
+          </div>
+          <h3 class="occ-title">Valentine's Day</h3>
+          <p class="occ-desc">Romantic Bouquets & Jewelry</p>
+          <span class="occ-pill" id="badge-count-valentines">3 items</span>
+        </div>
+
+        <!-- 4. Marriage -->
+        <div class="occasion-card" data-category="marriage" tabindex="0" role="button" aria-label="Marriage Category">
+          <div class="card-glow"></div>
+          <div class="card-icon-circle">
+            <span class="occ-emoji">💍</span>
+          </div>
+          <h3 class="occ-title">Marriage</h3>
+          <p class="occ-desc">Royal Silks & Gold Statues</p>
+          <span class="occ-pill" id="badge-count-marriage">3 items</span>
+        </div>
+
+        <!-- 5. Puberty -->
+        <div class="occasion-card" data-category="puberty" tabindex="0" role="button" aria-label="Puberty Category">
+          <div class="card-glow"></div>
+          <div class="card-icon-circle">
+            <span class="occ-emoji">🎉</span>
+          </div>
+          <h3 class="occ-title">Puberty</h3>
+          <p class="occ-desc">Half-Saree & Temple Jewels</p>
+          <span class="occ-pill" id="badge-count-puberty">3 items</span>
+        </div>
+
+        <!-- 6. Other Occasions -->
+        <div class="occasion-card" data-category="other" tabindex="0" role="button" aria-label="Other Occasions Category">
+          <div class="card-glow"></div>
+          <div class="card-icon-circle">
+            <span class="occ-emoji">🎁</span>
+          </div>
+          <h3 class="occ-title">Other Occasions</h3>
+          <p class="occ-desc">Housewarming & Milestones</p>
+          <span class="occ-pill" id="badge-count-other">3 items</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section: Filter Chips with Sliding Indicator + Product Grid -->
+  <section class="catalog-section" id="catalogSection">
+    <div class="container">
+      <!-- Sliding Filter Tabs Bar -->
+      <div class="filter-tabs-wrapper">
+        <div class="filter-tabs-track" id="filterTabsTrack">
+          <div class="sliding-pill-indicator" id="slidingIndicator"></div>
+          <button class="filter-tab active" data-tab="all">✨ All Occasions</button>
+          <button class="filter-tab" data-tab="birthday">🎂 Birthday</button>
+          <button class="filter-tab" data-tab="anniversary">💐 Anniversary</button>
+          <button class="filter-tab" data-tab="valentines">❤️ Valentine's</button>
+          <button class="filter-tab" data-tab="marriage">💍 Marriage</button>
+          <button class="filter-tab" data-tab="puberty">🎉 Puberty</button>
+          <button class="filter-tab" data-tab="other">🎁 Other</button>
+        </div>
+      </div>
+
+      <!-- Secondary Controls & Result Info -->
+      <div class="catalog-toolbar">
+        <div class="toolbar-left">
+          <div class="current-selection-info">
+            <span class="label-mute">Showing:</span>
+            <span class="category-highlight" id="activeCategoryName">All Occasions</span>
+            <span class="product-badge-counter" id="productsCountBadge">0 Products</span>
+          </div>
+        </div>
+
+        <div class="toolbar-right">
+          <!-- Price Range Filter -->
+          <div class="select-group">
+            <label for="priceFilterSelect"><i class="fa-solid fa-tags"></i> Price</label>
+            <select id="priceFilterSelect" class="styled-select">
+              <option value="all">All Prices</option>
+              <option value="under-50">Under $50</option>
+              <option value="50-100">$50 – $100</option>
+              <option value="100-200">$100 – $200</option>
+              <option value="above-200">$200 & Above</option>
+            </select>
+          </div>
+
+          <!-- Rating Filter -->
+          <div class="select-group">
+            <label for="ratingFilterSelect"><i class="fa-solid fa-star"></i> Rating</label>
+            <select id="ratingFilterSelect" class="styled-select">
+              <option value="all">All Ratings</option>
+              <option value="4.8">4.8★ & Above</option>
+              <option value="4.5">4.5★ & Above</option>
+              <option value="4.0">4.0★ & Above</option>
+            </select>
+          </div>
+
+          <!-- Sort Order -->
+          <div class="select-group">
+            <label for="sortFilterSelect"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort</label>
+            <select id="sortFilterSelect" class="styled-select">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+              <option value="name">Name (A-Z)</option>
+            </select>
+          </div>
+
+          <!-- Reset Filter Button -->
+          <button class="btn-reset-filters" id="resetFiltersBtn" title="Reset All Filters">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Filters Tag Pills (Removable) -->
+      <div class="active-filters-row" id="activeFiltersRow" style="display: none;">
+        <span class="tags-label">Applied:</span>
+        <div class="filter-tags-container" id="filterTagsContainer"></div>
+        <button class="clear-all-link" id="clearAllFiltersBtn">Clear All</button>
+      </div>
+
+      <!-- Dynamic Product Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state-card" id="emptyStateCard" style="display: none;">
+        <div class="empty-state-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <h3 class="empty-title">No Matching Occasion Gifts Found</h3>
+        <p class="empty-desc">We couldn't find any items matching your active search or filters. Try adjusting keywords or clearing filters.</p>
+        <button class="btn btn-primary" id="emptyResetBtn">
+          <i class="fa-solid fa-rotate-left"></i> Reset All Filters
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick View Details Modal -->
+  <div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModalBtn" aria-label="Close Details Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-content-layout" id="modalDynamicBody">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-Out Cart Drawer -->
+  <div class="cart-backdrop" id="cartBackdrop">
+    <div class="cart-panel" id="cartPanel" role="dialog" aria-labelledby="cartPanelTitle">
+      <div class="cart-top">
+        <div class="cart-top-title">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <h3 id="cartPanelTitle">Your Shopping Bag</h3>
+        </div>
+        <button class="cart-close" id="closeCartBtn" aria-label="Close Shopping Cart">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cart-items-scroll" id="cartItemsList">
+        <!-- Cart Items Injected Dynamically -->
+      </div>
+
+      <div class="cart-bottom">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span class="summary-val" id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated Express Shipping</span>
+          <span class="free-shipping-tag">FREE</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span class="total-val" id="cartTotal">$0.00</span>
+        </div>
+
+        <div class="cart-cta-box">
+          <button class="btn btn-primary btn-block checkout-action-btn" id="checkoutBtn">
+            <i class="fa-solid fa-lock"></i> Checkout Now
+          </button>
+          <button class="btn btn-outline btn-block clear-action-btn" id="clearCartBtn">
+            <i class="fa-solid fa-trash-can"></i> Clear Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <div class="brand-link">
+          <div class="brand-icon-box">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <span class="brand-title">Occasio<span class="brand-dot">.</span></span>
+        </div>
+        <p class="footer-blurb">
+          Curated celebration gift shop engineered with modern dark & light blue aesthetics, micro-interactions, and instant occasion filtering.
+        </p>
+        <div class="footer-tag-pill">
+          <i class="fa-solid fa-code"></i> FDS Project – Member 2: Categories & Products
+        </div>
+      </div>
+
+      <div class="footer-nav-col">
+        <h4>Occasion Catalogs</h4>
+        <ul>
+          <li><a href="#catalogSection" onclick="filterByOccasion('birthday')">🎂 Birthday Gifts</a></li>
+          <li><a href="#catalogSection" onclick="filterByOccasion('anniversary')">💐 Anniversary Specials</a></li>
+          <li><a href="#catalogSection" onclick="filterByOccasion('valentines')">❤️ Valentine's Romance</a></li>
+          <li><a href="#catalogSection" onclick="filterByOccasion('marriage')">💍 Marriage & Wedding</a></li>
+          <li><a href="#catalogSection" onclick="filterByOccasion('puberty')">🎉 Puberty Ceremony</a></li>
+          <li><a href="#catalogSection" onclick="filterByOccasion('other')">🎁 Other Celebrations</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-features-col">
+        <h4>Experience Highlights</h4>
+        <ul>
+          <li><span><i class="fa-solid fa-bolt"></i> Live Real-Time Search 🔍</span></li>
+          <li><span><i class="fa-solid fa-sliders"></i> Multi-level Price & Rating Filter</span></li>
+          <li><span><i class="fa-solid fa-plane-departure"></i> Smooth Fly-to-Cart Animation</span></li>
+          <li><span><i class="fa-solid fa-wand-magic-sparkles"></i> Interactive Confetti Hero Box</span></li>
+          <li><span><i class="fa-solid fa-palette"></i> Deep Dark Blue & Light Blue Design</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-sub-bar">
+      <div class="container sub-bar-flex">
+        <span>© 2026 Occasio. Crafted for Member 2 – Categories & Products.</span>
+        <span class="theme-signature">
+          <span class="palette-swatch swatch-dark"></span> Dark Blue &
+          <span class="palette-swatch swatch-light"></span> Light Blue Theme
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
