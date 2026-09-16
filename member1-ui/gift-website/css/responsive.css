@@ -1,0 +1,336 @@
+/* ==========================================================================
+   GIFTLY - RESPONSIVE STYLES & MEDIA QUERIES
+   css/responsive.css
+   ========================================================================== */
+
+/* ==========================================================================
+   DESKTOP (Large Screens: >= 1280px)
+   ========================================================================== */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1240px;
+  }
+}
+
+/* ==========================================================================
+   LAPTOP / TABLET LANDSCAPE (< 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .hero-visual-wrapper {
+    height: 440px;
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .occasions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gifts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-top-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .finder-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .finder-form-grid button {
+    grid-column: span 2;
+  }
+}
+
+/* ==========================================================================
+   TABLET PORTRAIT (< 768px)
+   - Hero stacks with visual on top or neatly arranged
+   - 3D canvas replaced with pure CSS 3D gift box
+   - Hamburger navigation activated
+   ========================================================================== */
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* Navigation */
+  .nav-menu-wrapper {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .btn-login-placeholder {
+    display: none;
+  }
+
+  /* Hero Section: visual on top, text below */
+  .hero-section {
+    min-height: auto;
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: var(--space-xl);
+  }
+
+  .hero-text-content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-mini-features {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  /* 3D Canvas Fallback for Mobile / Touch */
+  #hero-canvas {
+    display: none !important;
+  }
+
+  .css-gift-fallback {
+    display: block !important;
+  }
+
+  .hero-visual-wrapper {
+    height: 320px;
+    width: 100%;
+  }
+
+  .floating-glass-badge {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .badge-top-right {
+    top: 5%;
+    right: 5%;
+  }
+
+  .badge-bottom-left {
+    bottom: 5%;
+    left: 5%;
+  }
+
+  .hero-3d-hint {
+    display: none;
+  }
+
+  /* How It Works line hide on mobile */
+  .how-connecting-line {
+    display: none;
+  }
+
+  .how-steps-wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  /* About Us Teaser & About Page */
+  .about-teaser-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .about-story-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .story-img-main {
+    width: 100%;
+    height: 320px;
+  }
+
+  .story-img-secondary {
+    display: none;
+  }
+
+  /* Timeline Single Column */
+  .timeline-wrap::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 0;
+    text-align: left !important;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-item .timeline-dot {
+    left: 11px !important;
+    right: auto !important;
+  }
+
+  /* Contact page */
+  .contact-layout-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .contact-home-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .testimonial-slide {
+    padding: var(--space-lg);
+  }
+}
+
+/* ==========================================================================
+   MOBILE PHONES (< 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  :root {
+    --container: 100%;
+  }
+
+  .container {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .occasions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gifts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .finder-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .finder-form-grid button {
+    grid-column: span 1;
+    width: 100%;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .floating-glass-badge {
+    display: none; /* Keep hero clean on ultra small screens */
+  }
+
+  .floating-actions {
+    bottom: var(--space-md);
+    right: var(--space-md);
+  }
+
+  .fab-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ==========================================================================
+   TOUCH TARGET ACCESSIBILITY (Min 44px on clickable items)
+   ========================================================================== */
+button,
+a,
+input,
+select,
+textarea {
+  min-height: 44px;
+}
+
+.announcement-close {
+  min-height: 32px;
+  min-width: 32px;
+}
+
+.slider-dot {
+  min-height: 10px;
+  min-width: 10px;
+}
